@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.5;
+      /* Match placeholder ratio */
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Ensure the image fits and maintains aspect ratio */
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .gallery-img.last-gallery-img::before {
+      content: attr(data-overlay-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      /* Full-cover grey overlay */
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      /* Stack image and caption */
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    #lightbox-image {
+      max-width: 90%;
+      /* Ensure it fits within the viewport */
+      max-height: 90vh;
+      /* Ensures it's resized but maintains aspect ratio */
+      object-fit: contain;
+    }
+
+    /* Make caption text disappear only when hovering over the image */
+    #lightbox-image:hover+#lightbox-caption {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Ensure caption text is visible when not hovered */
+    #lightbox-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 90%;
+      background-color: rgba(0, 0, 0, 0.7);
+      /* Semi-transparent grey */
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: normal;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <link href="https://db.onlinewebfonts.com/c/68ddbb27311b4bd3837af9e3676a27ad?family=Mountain+Flower+Demo"
+    rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/ca06230a808a85efbbc16647b610db83?family=ABOXE+Personal" rel="stylesheet">
+  <title>Palash Valley Retreat</title>
+</head>
+
+<body>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a
+        class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
+        <img src="Images\Logo\logo.png" alt="Palash Valley Retreat" class="w-[80px] h-[80px] object-contain" />
+        <span class="ml-4 text-center relative top-[10px] leading-none">
+          <span class="block text-3xl mb-[-8px]" style="font-family: 'Mountain Flower Demo'">Palash Valley</span>
+          <span class="block text-xl" style="font-family: 'ABOXE Personal'">Retreat</span>
+        </span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-gray-900" href="#Rooms">Rooms</a>
+        <a class="mr-5 hover:text-gray-900" href="#Amenities">Amenities</a>
+        <a class="mr-5 hover:text-gray-900" href="#Gallery">Gallery</a>
+        <a class="mr-5 hover:text-gray-900" href="#Contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <section id="Hero" class="relative h-screen bg-cover bg-center"
+    style="background-image: url('Images/Hero Sections/sec 1 new (1).jpg');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6 md:px-12">
+      <!-- Hero Content -->
+      <div>
+        <!-- Heading -->
+        <h1 class="text-5xl font-bold leading-tight mb-4">
+          Welcome to Our Amazing Service
+        </h1>
+        <!-- Description -->
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">
+          Experience the future of technology and innovation. Our solutions will help you grow and succeed in today's
+          competitive market.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="Rooms"><!-- Carousel -->
+    <!-- Carousel -->
+    <!-- Top decorative bar -->
+    <div class="w-full py-4">
+      <div class="w-full px-4">
+        <div class="h-1 w-full bg-gradient-to-r from-red-500 to-orange-500 rounded-full"></div>
+      </div>
+    </div>
+
+    <!-- Main container -->
+    <div class="w-full max-w-6xl mx-auto px-4 py-8">
+      <!-- Header section -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 space-y-4 md:space-y-0">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Indoor Plants<br />Collection</h2>
+        <p class="text-gray-600 md:w-1/2 leading-relaxed">Discover our carefully curated selection of indoor plants,
+          each chosen for their unique characteristics and ability to thrive in home environments. From easy-care
+          succulents to striking tropical varieties.</p>
+      </div>
+      <!-- Carousel container -->
+      <div class="relative w-full max-w-6xl mx-auto px-4 py-8">
+        <!-- Card container -->
+        <div class="overflow-hidden relative">
+          <div class="flex transition-transform duration-300 ease-in-out" id="carousel-container">
+            <!-- Card 1 -->
+            <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
+                <img src="/api/placeholder/400/300" alt="Canna Lily" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Canna Lily</h3>
+                  <p class="transition-all duration-300">Canna lilies are beautiful tropical plants known for their vibrant flowers
+                    and large, paddle-shaped leaves. Perfect for adding a dramatic touch to gardens.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
+                <img src="/api/placeholder/400/300" alt="Jade Plant" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Jade Plant</h3>
+                  <p class="transition-all duration-300">Jade plants are succulent houseplants known for their thick, woody stems and
+                    oval-shaped leaves. They're considered symbols of good luck.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
+                <img src="/api/placeholder/400/300" alt="Zebra Plant" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Zebra Plant</h3>
+                  <p class="transition-all duration-300">Zebra plants are striking succulents with distinctive white stripes on dark
+                    green leaves. They're compact and perfect for indoor decoration.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
+                <img src="/api/placeholder/400/300" alt="Snake Plant" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Snake Plant</h3>
+                  <p class="transition-all duration-300">Snake plants are hardy indoor plants with tall, sturdy leaves. They're
+                    excellent air purifiers and can thrive in various light conditions.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
+              <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
+                <img src="/api/placeholder/400/300" alt="Monstera" class="w-full h-48 object-cover">
+                <div class="p-6">
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Monstera</h3>
+                  <p class="transition-all duration-300">Monstera deliciosa is famous for its large, split leaves. This tropical plant
+                    adds a bold, jungle-like atmosphere to any indoor space.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <button
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 focus:outline-none"
+          id="prev-btn">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 focus:outline-none"
+          id="next-btn">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- Pagination dots -->
+        <div class="flex justify-center mt-6 space-x-2" id="pagination-dots">
+          <button class="w-2 h-2 rounded-full bg-gray-400 focus:outline-none" data-index="0"></button>
+          <button class="w-2 h-2 rounded-full bg-gray-300 focus:outline-none" data-index="1"></button>
+          <button class="w-2 h-2 rounded-full bg-gray-300 focus:outline-none" data-index="2"></button>
+          <button class="w-2 h-2 rounded-full bg-gray-300 focus:outline-none" data-index="3"></button>
+          <button class="w-2 h-2 rounded-full bg-gray-300 focus:outline-none" data-index="4"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom decorative bar -->
+    <div class="w-full py-4">
+      <div class="w-full px-4">
+        <div class="h-1 w-full bg-gradient-to-r from-yellow-500 to-red-500 rounded-full"></div>
+      </div>
+    </div>
+  </section>
+  <section id="Amenities" class="bg-orange-800 text-white py-24">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
+      <!-- Steps navigation -->
+      <div class="flex mx-auto mb-20 justify-center">
+        <a id="step-1"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium bg-gray-100 inline-flex items-center leading-none border-indigo-500 text-indigo-500 tracking-wider rounded-t cursor-pointer"
+          onclick="changeContent(0)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>STEP 1
+        </a>
+        <a id="step-2"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(1)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>STEP 2
+        </a>
+        <a id="step-3"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(2)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <circle cx="12" cy="5" r="3"></circle>
+            <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+          </svg>STEP 3
+        </a>
+        <a id="step-4"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(3)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>STEP 4
+        </a>
+      </div>
+  
+      <!-- Content Section -->
+      <div class="lg:flex lg:justify-between lg:items-center">
+        <!-- Heading and Description -->
+        <div class="lg:w-1/2">
+          <h1 id="step-heading" class="lg:w-2/3 mx-auto text-2xl font-bold title-font mb-4">Step 1: Get Started</h1>
+          <p id="step-description" class="lg:w-2/3 mx-auto leading-relaxed text-base">
+             
+          </p>
+        </div>
+  
+        <!-- Image -->
+        <img id="step-image" class="lg:w-1/3 w-full block mx-auto mb-10 object-cover object-center rounded p-5"
+          alt="hero" src="https://dummyimage.com/720x600/ff7a7a/333333">
+      </div>
+    </div>
+  </section>  
+  <section id="Gallery" class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+      <div class="flex w-full mb-20 flex-wrap">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">
+          Master Cleanse Reliac Heirloom
+        </h1>
+        <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
+          Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify,
+          subway tile poke farm-to-table.
+        </p>
+      </div>
+      <div class="flex flex-wrap -m-1 md:-m-2" id="gallery container">
+        <div class="flex flex-wrap w-1/2">
+          <div class="w-1/2 p-1 md:p-2">
+            <div class="gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/500x300/eee/000&text=500x300" style="--aspect-ratio: 500/300;">
+              <span class="placeholder-text">500x300</span>
+            </div>
+          </div>
+          <div class="w-1/2 p-1 md:p-2">
+            <div class="gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/501x301/eee/000&text=501x301" style="--aspect-ratio: 500/300;">
+              <span class="placeholder-text">501x301</span>
+            </div>
+          </div>
+          <div class="w-full p-1 md:p-2">
+            <div class="gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/600x360/eee/000&text=600x360" style="--aspect-ratio: 600/360;">
+              <span class="placeholder-text">600x360</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap w-1/2">
+          <div class="w-full p-1 md:p-2">
+            <div class="gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/601x361/eee/000&text=600x360" style="--aspect-ratio: 600/360;">
+              <span class="placeholder-text">601x361</span>
+            </div>
+          </div>
+          <div class="w-1/2 p-1 md:p-2">
+            <div class="gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/504x304/eee/000&text=504x304" style="--aspect-ratio: 500/300;">
+              <span class="placeholder-text">504x304</span>
+            </div>
+          </div>
+          <div class="w-1/2 p-1 md:p-2">
+            <div class="gallery-img last-gallery-img w-full overflow-hidden">
+              <img alt="gallery" class="w-full object-cover h-full object-center block"
+                src="https://dummyimage.com/505x305/eee/000&text=505x305" style="--aspect-ratio: 500/300;">
+              <span class="placeholder-text">505x305</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- Lightbox -->
+  <div class="lightbox">
+    <button class="absolute top-4 right-4 text-white" id="close-lightbox">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white" id="prev-image">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white" id="next-image">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <div class="relative max-w-4xl mx-auto">
+      <img src="" alt="" class="max-h-[90vh] max-w-full object-contain" id="lightbox-image">
+      <p class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-center p-4"
+        id="lightbox-caption"></p>
+    </div>
+  </div>
+  <section id="Contact" class="text-gray-600 body-font relative">
+    <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+      <!-- Map Container -->
+      <div class="lg:w-full md:w-full bg-gray-300 rounded-lg overflow-hidden p-10 flex items-end justify-start relative"
+        style="height: 500px;">
+        <!-- Map with new Plus Code and zoom level -->
+        <iframe width="100%" height="100%" class="absolute inset-0" frameborder="0" title="map" marginheight="0"
+          marginwidth="0" scrolling="no"
+          src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=23.231666,86.034972&ie=UTF8&t=&z=18&iwloc=B&output=embed"></iframe>
+        <!-- Overlay with business info -->
+        <div
+          class="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white relative flex flex-wrap py-6 rounded shadow-md w-full max-w-2xl">
+          <div class="lg:w-1/2 px-6">
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-lg">Palash Valley Retreat</h2>
+            <p class="mt-1">Baredi, Dava Torang, Baghmundi, Purulia, West Bengal, 723152</p>
+          </div>
+          <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">EMAIL</h2>
+            <a href="https://mail.google.com/mail/u/0/?view=cm&to=palashvalleyretreat@gmail.com&su=Inquiry&body=Hello, I would like more information about your services."
+              target="_blank" class="text-indigo-500 leading-relaxed">palashvalleyretreat@gmail.com</a>
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">PHONE</h2>
+            <p class="leading-relaxed">+91-89104-97655</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+<script src="script.js"></script>
+
+</html>
