@@ -138,8 +138,8 @@
       </nav>
     </div>
   </header>
-  <section id="Hero" class="relative h-screen bg-cover bg-center"
-    style="background-image: url('Images/Hero Sections/sec 1 new (1).jpg');">
+  <!-- Hero -->
+  <section id="Hero" class="relative h-screen bg-cover bg-center" style="background-image: url('Images/Hero Sections/sec 1 new (1).jpg');">
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black opacity-50"></div>
 
@@ -158,7 +158,65 @@
       </div>
     </div>
   </section>
-  <section id="Rooms"><!-- Carousel -->
+  <!-- Rooms -->
+  <section id="Rooms" class="bg-orange-800 text-white py-24">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
+      <!-- Steps navigation -->
+      <div class="flex mx-auto mb-20 justify-center">
+        <a id="step-1"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium bg-gray-100 inline-flex items-center leading-none border-indigo-500 text-indigo-500 tracking-wider rounded-t cursor-pointer"
+          onclick="changeContent(0)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>Mud House
+        </a>
+        <a id="step-2"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(1)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>Tree House
+        </a>
+        <a id="step-3"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(2)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <circle cx="12" cy="5" r="3"></circle>
+            <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+          </svg>STEP 3
+        </a>
+        <a id="step-4"
+          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
+          onclick="changeContent(3)">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>STEP 4
+        </a>
+      </div>
+  
+      <!-- Content Section -->
+      <div class="lg:flex lg:justify-between lg:items-center">
+        <!-- Heading and Description -->
+        <div class="lg:w-1/2">
+          <h1 id="step-heading" class="lg:w-2/3 mx-auto text-2xl font-bold title-font mb-4">Step 1: Get Started</h1>
+          <p id="step-description" class="lg:w-2/3 mx-auto leading-relaxed text-base">
+             
+          </p>
+        </div>
+  
+        <!-- Image -->
+        <img id="step-image" class="lg:w-1/3 w-full block mx-auto mb-10 object-cover object-center rounded p-5"
+          alt="hero" src="https://dummyimage.com/720x600/ff7a7a/333333">
+      </div>
+    </div>
+  </section> 
+  <!-- Amenities -->
+  <section id="Amenities">
     <!-- Carousel -->
     <!-- Top decorative bar -->
     <div class="w-full py-4">
@@ -184,9 +242,9 @@
             <!-- Card 1 -->
             <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
               <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
-                <img src="/api/placeholder/400/300" alt="Canna Lily" class="w-full h-48 object-cover">
+                <img src="Images/Amenities/Khatiya.jpg" alt="Khatiya" class="w-full h-48 object-cover">
                 <div class="p-6">
-                  <h3 class="text-2xl mb-2 transition-all duration-300">Canna Lily</h3>
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Khatiya</h3>
                   <p class="transition-all duration-300">Canna lilies are beautiful tropical plants known for their vibrant flowers
                     and large, paddle-shaped leaves. Perfect for adding a dramatic touch to gardens.</p>
                 </div>
@@ -196,9 +254,9 @@
             <!-- Card 2 -->
             <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
               <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
-                <img src="/api/placeholder/400/300" alt="Jade Plant" class="w-full h-48 object-cover">
+                <img src="Images/Amenities/Pond.jpg" alt="Pond" class="w-full h-48 object-cover">
                 <div class="p-6">
-                  <h3 class="text-2xl mb-2 transition-all duration-300">Jade Plant</h3>
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Fishing Pond</h3>
                   <p class="transition-all duration-300">Jade plants are succulent houseplants known for their thick, woody stems and
                     oval-shaped leaves. They're considered symbols of good luck.</p>
                 </div>
@@ -208,9 +266,9 @@
             <!-- Card 3 -->
             <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
               <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
-                <img src="/api/placeholder/400/300" alt="Zebra Plant" class="w-full h-48 object-cover">
+                <img src="Images/Amenities/Trampoline.jpg" alt="Trampoline" class="w-full h-48 object-cover">
                 <div class="p-6">
-                  <h3 class="text-2xl mb-2 transition-all duration-300">Zebra Plant</h3>
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Trampoline</h3>
                   <p class="transition-all duration-300">Zebra plants are striking succulents with distinctive white stripes on dark
                     green leaves. They're compact and perfect for indoor decoration.</p>
                 </div>
@@ -220,9 +278,9 @@
             <!-- Card 4 -->
             <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
               <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
-                <img src="/api/placeholder/400/300" alt="Snake Plant" class="w-full h-48 object-cover">
+                <img src="Images/Amenities/Watch Tower.jpg" alt="Towertop" class="w-full h-48 object-cover">
                 <div class="p-6">
-                  <h3 class="text-2xl mb-2 transition-all duration-300">Snake Plant</h3>
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Watchtower Top</h3>
                   <p class="transition-all duration-300">Snake plants are hardy indoor plants with tall, sturdy leaves. They're
                     excellent air purifiers and can thrive in various light conditions.</p>
                 </div>
@@ -232,9 +290,9 @@
             <!-- Card 5 -->
             <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4 transition-all duration-300">
               <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 transform">
-                <img src="/api/placeholder/400/300" alt="Monstera" class="w-full h-48 object-cover">
+                <img src="Images/Amenities/Watchtower.jpg" alt="Towerbutt" class="w-full h-48 object-cover">
                 <div class="p-6">
-                  <h3 class="text-2xl mb-2 transition-all duration-300">Monstera</h3>
+                  <h3 class="text-2xl mb-2 transition-all duration-300">Watchtower bottom</h3>
                   <p class="transition-all duration-300">Monstera deliciosa is famous for its large, split leaves. This tropical plant
                     adds a bold, jungle-like atmosphere to any indoor space.</p>
                 </div>
@@ -277,63 +335,8 @@
         <div class="h-1 w-full bg-gradient-to-r from-yellow-500 to-red-500 rounded-full"></div>
       </div>
     </div>
-  </section>
-  <section id="Amenities" class="bg-orange-800 text-white py-24">
-    <div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
-      <!-- Steps navigation -->
-      <div class="flex mx-auto mb-20 justify-center">
-        <a id="step-1"
-          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium bg-gray-100 inline-flex items-center leading-none border-indigo-500 text-indigo-500 tracking-wider rounded-t cursor-pointer"
-          onclick="changeContent(0)">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>STEP 1
-        </a>
-        <a id="step-2"
-          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
-          onclick="changeContent(1)">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-          </svg>STEP 2
-        </a>
-        <a id="step-3"
-          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
-          onclick="changeContent(2)">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
-            <circle cx="12" cy="5" r="3"></circle>
-            <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
-          </svg>STEP 3
-        </a>
-        <a id="step-4"
-          class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900 tracking-wider cursor-pointer"
-          onclick="changeContent(3)">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-5 h-5 mr-3" viewBox="0 0 24 24">
-            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>STEP 4
-        </a>
-      </div>
-  
-      <!-- Content Section -->
-      <div class="lg:flex lg:justify-between lg:items-center">
-        <!-- Heading and Description -->
-        <div class="lg:w-1/2">
-          <h1 id="step-heading" class="lg:w-2/3 mx-auto text-2xl font-bold title-font mb-4">Step 1: Get Started</h1>
-          <p id="step-description" class="lg:w-2/3 mx-auto leading-relaxed text-base">
-             
-          </p>
-        </div>
-  
-        <!-- Image -->
-        <img id="step-image" class="lg:w-1/3 w-full block mx-auto mb-10 object-cover object-center rounded p-5"
-          alt="hero" src="https://dummyimage.com/720x600/ff7a7a/333333">
-      </div>
-    </div>
-  </section>  
+  </section> 
+  <!-- Gallery -->
   <section id="Gallery" class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="flex w-full mb-20 flex-wrap">
@@ -420,6 +423,7 @@
         id="lightbox-caption"></p>
     </div>
   </div>
+  <!-- Contact -->
   <section id="Contact" class="text-gray-600 body-font relative">
     <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
       <!-- Map Container -->

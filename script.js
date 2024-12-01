@@ -1,12 +1,12 @@
 // Data for each step (Image, Heading, Description)
 const steps = [
     {
-        image: "https://dummyimage.com/720x600/ff7a7a/333333", // Image for Step 1
+        image: "Images/Rooms/Mud House.jpg", // Image for Step 1
         heading: "Step 1: Get Started",
         description: "Begin your journey with a clear vision and the right tools. It's the first step towards success."
     },
     {
-        image: "https://dummyimage.com/720x600/7a7aff/333333", // Image for Step 2
+        image: "Images/Rooms/Tong House.jpg", // Image for Step 2
         heading: "Step 2: Take Action",
         description: "Put your plan into motion and take meaningful steps toward your goal."
     },
@@ -261,15 +261,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Sample image data - replace with your actual image data
 const allImages = [
-    { src: 'Images/Gallery/Untitled.png', alt: 'Description 1' },
-    { src: 'Images/Gallery/Logo2.png', alt: 'Description 2' },
-    { src: 'Images/Gallery/Cover.png', alt: 'Description 3' },
-    { src: 'Images/Gallery/Logo New.png', alt: 'Description 4' },
+    { src: 'Images/Gallery/Cover.png', alt: 'Description 1' },
+    { src: 'Images/Gallery/Khatiya.jpg', alt: 'Description 2' },
+    { src: 'Images/Gallery/Mud House.jpg', alt: 'Description 3' },
+    { src: 'Images/Gallery/Pond.jpg', alt: 'Description 4' },
     { src: 'Images/Gallery/Logo Next NTxt.png', alt: 'Description 5' },
-    { src: 'Images/Gallery/Logo Next.png', alt: 'Description 6' },
-    { src: 'Images/Gallery/Logo2 No Text.png', alt: 'Description 7' },
-    { src: 'Images/Gallery/Logo2.png', alt: 'Description 8' },
-    { src: 'Images/Gallery/The-Green-Bamboo-Wall-2-1529930041195.jpg', alt: 'Description 9' },
+    { src: 'Images/Gallery/Tong House.jpg', alt: 'Description 6' },
+    { src: 'Images/Gallery/Trampoline.jpg', alt: 'Description 7' },
+    { src: 'Images/Gallery/Watch Tower.jpg', alt: 'Description 8' },
+    { src: 'Images/Gallery/Watchtower.jpg', alt: 'Description 9' },
     { src: 'Images/Gallery/Untitled.png', alt: 'Description 10' },
     // Add more images as needed
 ];
